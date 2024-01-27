@@ -22,7 +22,7 @@ pipeline {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerHubpwd', usernameVariable: 'dockerHubUser')]) {
         	                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPwd}"}
-                                               sh 'docker push container548/hello'
+                                               sh 'docker push container548/hello' #tag :container548/hello:latest
 }
 }
 }
