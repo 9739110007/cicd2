@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-ak-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-app
+  template:
+    metadata:
+      labels:
+        app: angular-app
+    spec:
+      containers:
+      - name: angular-app
+        image: container548/hello:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8082
+# service type loadbalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-app-svc
+spec:
+  type: Nodeport
+  selector:
+    app: angular-app
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+  type: LoadBalancer
