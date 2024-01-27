@@ -13,7 +13,6 @@ pipeline {
   stage('Build docker image'){
             steps{
                 script{
-                        sh 'sudo chmod 777 /var/run/docker.sock'
                         sh 'docker build -t container548/hello .'
                 }
 }
