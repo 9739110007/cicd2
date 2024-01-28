@@ -26,11 +26,11 @@ pipeline {
 }
 }
 }
-    stage ('kubernetes deployment') {
+    stage('kubernetes deployment'){
                 steps{
                         sh 'kubectl apply --validate=false -f deployment.yml --server=< https://192.168.49.2:8443>'            
                 }
     }
 }
 }
-}
+
