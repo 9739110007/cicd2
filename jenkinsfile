@@ -28,7 +28,8 @@ pipeline {
 }
     stage('kubernetes deployment'){
                 steps{
-                        sh 'kubectl apply --validate=false -f deployment.yml --server=https://192.168.49.2:8443'            
+                        withCredentials([file(credentialsId: 'k8s1', variable: 'kube')]) {
+                        sh 'kubectl apply --validate=false -f deployment.yml --server=https://192.168.49.2:8443' }
                 }
     }
 }
