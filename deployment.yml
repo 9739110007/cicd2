@@ -17,7 +17,7 @@ spec:
         image: container548/hello:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8082
+        - containerPort: 8080
 # service type loadbalancer
 ---
 apiVersion: v1
@@ -30,6 +30,6 @@ spec:
     app: angular-app
   ports:
     - protocol: TCP
-      port: 8082
-      targetPort: 8082
+      port: 8080
+      targetPort: 8080
   type: LoadBalancer
