@@ -28,8 +28,7 @@ pipeline {
 }
     stage('kubernetes deployment'){
                 steps{
-                        withCredentials([file(credentialsId: 'k8s1', variable: 'kube')]) {
-                        sh 'kubectl apply --validate=false -f deployment.yml --server=https://192.168.49.2:8443' }
+                 kubectl apply --validate=false -f deployment.yml --server=https://192.168.49.2:8443 --username='minikube' --password='password'
                 }
     }
 }
