@@ -29,7 +29,7 @@ pipeline {
     stage('kubernetes deployment'){
                 steps{
                      script{kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://172.31.14.199:6443') {
-                                    sh "kubectl apply -f deployment.yml"}            
+                                    sh "kubectl apply -f deployment1.yml"}            
                 }    
     }
 }
