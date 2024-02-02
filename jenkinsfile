@@ -28,8 +28,7 @@ pipeline {
 }
     stage('kubernetes deployment'){
                 steps{
-                     script{
-                            kubeconfig(credentialsId: 'kube', serverUrl: 'https://172.31.33.17:6443') {
+                     script{kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://172.31.14.199:6443') {
                                     sh "kubectl apply -f deployment.yml"}            
                 }    
     }
