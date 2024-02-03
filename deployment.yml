@@ -18,18 +18,18 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-# service type loadbalancer
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: angular-app-svc
 spec:
-  type: Nodeport
   selector:
     app: angular-app
   ports:
     - protocol: "TCP"
       port: 8080
-      targetPort: 8092
-  type: LoadBalancer
+      targetPort: 8080
+    type: Nodeport
+
