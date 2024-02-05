@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    tools{
+        maven 'maven-3.9.5'
+    }
+    stages{
+        stage('Build Maven'){
+            steps{
+                     checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Divya7508/cicd2.git']])                
+                     sh 'mvn clean package'
+            }
+        }
+  stage('Build docker image'){
+            steps{
+                script{
+                        sh 'docker build -t container548/hello .'
+                }
+}
+}
+    stage('Push image to Hub'){
+            steps{
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerHubpwd', usernameVariable: 'dockerHubUser')]) {
+        	                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPwd}"}
+                                                sh 'chmod 777 auto.sh'
+                                                  sh './auto.sh' 
+}
+}
+}
+    stage('kubernetes deployment'){
+                steps{
+                     script{kubeconfig(credentialsId: 'kubeconfig', serverUrl: 'https://172.31.14.199:6443') {
+                                    sh "kubectl apply -f deployment.yml"}            
+                }    
+    }
+}
+}
+}
