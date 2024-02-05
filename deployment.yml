@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: angular-app
-        image: container548/hello:"$tag1"
+        image: container548/hello
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
