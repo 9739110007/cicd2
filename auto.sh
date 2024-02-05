@@ -8,10 +8,10 @@ tag1=$(sed -n '7s/.*<version>\(.*\)<\/version>/\1/p' pom.xml | awk -F '-' '{prin
 docker version
 
 # Build Docker image
-docker build -t container548/hello .
+docker build -t hello .
 
 # Tag Docker image
-docker tag container548/hello container548/hello:"$tag1"
+docker tag hello container548/hello:"$tag1"
 
 # Push Docker image to registry
 docker push container548/hello:"$tag1"
