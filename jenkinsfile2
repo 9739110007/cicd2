@@ -15,7 +15,7 @@ stages{
   stage('Build docker image'){
             steps{
                 script{
-                        sh 'docker build -t hello .'
+                        sh 'docker build -t container548/hello .'
                 }
 }
 }
@@ -24,7 +24,7 @@ stages{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'dockerHubpwd', usernameVariable: 'dockerHubUser')]) 
                         {sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPwd}"}
-                                               sh 'docker push hello' 
+                                               sh 'docker push container548/hello' 
 }
 }
 }
